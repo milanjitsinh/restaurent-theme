@@ -191,3 +191,42 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 	
+
+function submit_item_ajax_request() {
+ 
+    // The $_REQUEST contains all the data sent via ajax
+    if ( isset($_REQUEST) ) {
+     
+        $itemList = unserialize($_REQUEST['itemsId']);
+         $values = array();
+		parse_str($_POST['itemsId'], $values);
+        // Let's take the data that was sent and do something with it
+ 	print_r($values['items']);
+  
+
+        // Now we'll return it to the javascript function
+        // Anything outputted will be returned in the response
+//        echo $fruit;
+         
+        // If you're debugging, it might be useful to see what was sent in the $_REQUEST
+        // print_r($_REQUEST);
+     
+    }
+     
+    // Always die in functions echoing ajax content
+   die();
+}
+ 
+add_action( 'wp_ajax_submit_item_ajax_request', 'submit_item_ajax_request' );
+add_action( 'wp_ajax_nopriv_submit_item_ajax_request', 'submit_item_ajax_request' );
+
+add_action('wp_head', 'myplugin_ajaxurl');
+
+function myplugin_ajaxurl() {
+
+   echo '<script type="text/javascript">
+           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
+         </script>';
+}
+
+

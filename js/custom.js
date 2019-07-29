@@ -222,3 +222,57 @@ jQuery(document).ready(function($) {
   Page.init();
 
 });
+
+jQuery('#submitForm').on('click',function(){
+     
+// debugger;
+// if (jQuery('input[type="checkbox"]:checked').length < 10)
+//        {
+//            alert("Kindly select minimum of 10 items to plan your menu!");
+//            return false;
+//        }
+
+        page_state = true;
+
+        menu_list = jQuery("#mark_delicacies").serialize();
+        console.log(menu_list);
+        // Send details to page
+
+        // $.post('libraries/mk_pdf/plan-menu-action.php',
+        // {
+        // contact_dtls: contact_dtls,
+        // menu_list: menu_list,
+        // ax: '1'
+        // }).done(function(data){
+//        alert(data);
+        // if(data != "ERROR!")
+        // {
+        // location.href="food-menu?ack_msg=success";
+        // }
+        // else
+        // {
+        // location.href="food-menu?ack_msg=error";
+        // }
+        // }).fail(function(){
+        // location.href="food-menu?ack_msg=error";
+        // });
+
+        // return false;
+console.log(ajaxurl)
+  jQuery.ajax({
+        url: ajaxurl, // or example_ajax_obj.ajaxurl if using on frontend
+        data: {
+            'action': 'submit_item_ajax_request',
+            'itemsId' : menu_list
+        },
+        method:'POST',
+        success:function(data) {
+            // This outputs the result of the ajax request
+            console.log(data);
+        },
+        error: function(errorThrown){
+            console.log(errorThrown);
+        }
+    });  
+
+ });

@@ -125,8 +125,10 @@ $categoriesList = get_categories(array(
                 <!--end: Accordion -->
             </div>
         <?php } ?>
-        <input type="button" id="submit" name="submit" placeholder="Search Food Item" value="Search" />
-        
+        <div class="span12 text-center">
+        <input type="button" id="submitForm" name="submit" placeholder="Search Food Item" value="Search" />            
+        </div>
+
     </form>
 </div>
 </div>
@@ -219,42 +221,6 @@ get_footer();
 
     }
 
- jQuery('#submit').on('click',function(){
-     
-// debugger;
-// if (jQuery('input[type="checkbox"]:checked').length < 10)
-//        {
-//            alert("Kindly select minimum of 10 items to plan your menu!");
-//            return false;
-//        }
 
-        page_state = true;
-
-        menu_list = jQuery("#mark_delicacies").serialize();
-        console.log(menu_list);
-        // Send details to page
-
-        // $.post('libraries/mk_pdf/plan-menu-action.php',
-        // {
-        // contact_dtls: contact_dtls,
-        // menu_list: menu_list,
-        // ax: '1'
-        // }).done(function(data){
-//        alert(data);
-        // if(data != "ERROR!")
-        // {
-        // location.href="food-menu?ack_msg=success";
-        // }
-        // else
-        // {
-        // location.href="food-menu?ack_msg=error";
-        // }
-        // }).fail(function(){
-        // location.href="food-menu?ack_msg=error";
-        // });
-
-        // return false;
-
- });
 
 </script>
