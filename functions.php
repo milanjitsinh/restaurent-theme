@@ -156,6 +156,7 @@ function restaurant_scripts() {
 	wp_enqueue_script( 'jquery.slitslider.js', get_template_directory_uri() . '/js/jquery.slitslider.js', array(), '20151215', true );
 	wp_enqueue_script( 'animate.js', get_template_directory_uri() . '/js/animate.js', array(), '20151215', true );
 	wp_enqueue_script( 'custom.js', get_template_directory_uri() . '/js/custom.js', array(), '20151215', true );
+	// wp_enqueue_script( 'contactform.js', get_template_directory_uri() . '/js/contactform.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -196,23 +197,18 @@ function submit_item_ajax_request() {
  
     // The $_REQUEST contains all the data sent via ajax
     if ( isset($_REQUEST) ) {
-     
-        $itemList = unserialize($_REQUEST['itemsId']);
-         $values = array();
-		parse_str($_POST['itemsId'], $values);
-        // Let's take the data that was sent and do something with it
- 	print_r($values['items']);
-  
 
-        // Now we'll return it to the javascript function
-        // Anything outputted will be returned in the response
-//        echo $fruit;
-         
-        // If you're debugging, it might be useful to see what was sent in the $_REQUEST
+        $itemList = unserialize($_REQUEST['itemsId']);
+        $formData = unserialize($_REQUEST['formData']);
+        $values = array();
+        $formArray = array();
+		parse_str($_POST['itemsId'], $values);
+		parse_str($_POST['formData'], $formArray);
+        // Let's take the data that was sent and do something with it
+    	print_r($values['items']);
+    	print_r($formArray);
         // print_r($_REQUEST);
-     
-    }
-     
+    }     
     // Always die in functions echoing ajax content
    die();
 }
@@ -229,4 +225,146 @@ function myplugin_ajaxurl() {
          </script>';
 }
 
+function admin_load_scripts() {
+    // wp_enqueue_style('analytics','//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' );
+	wp_enqueue_script('custom-js', 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js');
+	wp_enqueue_script( 'dt1','https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.js' , array(), '1.1', true );
+	// wp_enqueue_script( 'dt2','https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js' , array(), '1.1', true );
+	wp_enqueue_script( 'dt3','https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js' , array(), '1.1', true );
+	wp_enqueue_script( 'dt4','https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js' , array(), '1.1', true );
+	wp_enqueue_script( 'dt5','https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js' , array(), '1.1', true );
+	wp_enqueue_script( 'dt6','https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js' , array(), '1.1', true );
+	    wp_enqueue_style('analytics','//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' );
+}
+add_action('admin_enqueue_scripts', 'admin_load_scripts');
 
+/**
+ * Register a custom menu page.
+ */
+function wpdocs_register_my_custom_menu_page(){
+    add_menu_page(
+        __( 'Inquery List', 'inquerypage' ),
+        'Inquery List',
+        'manage_options',
+        'inquerypage',
+        'my_custom_menu_page_url',
+        'dashicons-welcome-widgets-menus',
+        6
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+
+function my_custom_menu_page_url(){
+
+	echo do_shortcode('[inqueryTable]'); 
+}
+function inqueryTableFun() {
+
+	global $wpdb;
+	$responseData = $wpdb->get_results("SELECT * FROM ". $wpdb->prefix ."inquery_entry");
+	// print_r('<pre>');
+	// print_r($responseData);
+	// print_r('</pre>');
+	// exit;
+	?>
+<div class="container" style="width:80%">
+<table id="inqueryDataTable" style="width:100%" hidden>
+ <thead>
+  <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Location</th>
+        <th>Venue</th>
+        <th>EventType</th>
+        <th>Total People</th>
+        <th>Function Date</th>
+        <th>Inquery Date</th>
+        <th>Status</th>
+        <th>Action </th> 
+  </tr>
+ </thead>
+ <tbody>
+
+<?php  foreach($responseData as $results): ?>
+        <tr>
+	  <?php  foreach($results as $key=>$value):
+	  	if($key !='item_ids'){ ?>
+	        <td><?php echo $value; ?></td>
+	  <?php }
+	   endforeach;?>
+	   <td><button>Approve</button></td>
+        </tr>
+<?php endforeach;?>
+</tbody>
+</table>
+</div>
+<?php 
+}
+add_shortcode('inqueryTable','inqueryTableFun');
+
+
+add_action( 'admin_footer', function() {
+$ajaxUrl = admin_url( 'admin-ajax.php' );
+ ?>
+ <script type="text/javascript" class="init">
+jQuery(document).ready(function() {
+	  var table =  jQuery('#inqueryDataTable').DataTable();
+	  jQuery('#inqueryDataTable').show(1000);
+	    jQuery('#inqueryDataTable').on( 'click', 'button', function () {
+        var data = table.row( jQuery(this).parents('tr') );
+        // alert( 'Id ='+data[0]);
+        console.log(data);
+    } );
+} );
+</script>
+<script>
+
+function refresh_datatable()
+{
+    console.log("data");
+     jQuery.ajax({
+         type : "post",
+         dataType : "json", 
+         url : '<?php echo $ajaxUrl; ?>',
+         data : {
+					action: "gadwp_ajax_event_reports",
+					post_id   : 'post_id'
+				},
+         success : function(response) {
+			var arr =response;
+      }
+ 	 });
+}
+</script>
+
+<?php
+}, 100 );
+
+
+
+add_action('wp', function() {
+    if (!is_admin() && isset($_GET['is_update']) && $_GET['is_update'] && isset($_GET['version']) && $_GET['version']) {
+        switch ($_GET['version']):
+            case 11:
+                global $wpdb;
+
+                $charset_collate = $wpdb->get_charset_collate();
+                $table_name = $wpdb->prefix . 'inquery_entry';
+                $sql = "DROP TABLE IF EXISTS `$table_name`";
+                $sqlCreate = "CREATE TABLE IF NOT EXISTS `{$table_name}` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `name` VARCHAR(50) NOT NULL ,  `email` VARCHAR(30) NOT NULL ,  `number`  DECIMAL(11) NOT NULL ,  `location` VARCHAR(20) NOT NULL ,  `venue` VARCHAR(30) NOT NULL ,  `event_type` VARCHAR(50) NOT NULL ,  `no_of_people` INT NOT NULL ,  `date` DATE NOT NULL ,  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `item_ids` TEXT NOT NULL, `status` BOOLEAN NOT NULL DEFAULT 0,   PRIMARY KEY  (`ID`))  $charset_collate;";
+
+                require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+                $wpdb->query($sql);
+                echo "Query Result::";
+               // print_r($sqlCreate);
+                print_r(dbDelta($sqlCreate));
+               // exit;
+                break;
+                    default :
+                break;
+        endswitch;
+    }
+});
