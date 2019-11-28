@@ -65,60 +65,67 @@
           <div class="span12">
             <div class="row">
               <div class="span3">
+			   <a href="<?php echo get_site_url(); ?>/select-page">
                 <div class="box aligncenter">
                   <div class="aligncenter icon">
                     <i class="icon-briefcase icon-circled icon-64 active"></i>
                   </div>
                   <div class="text">
-                    <h6>Corporate business</h6>
+                    <h6>Go to Menu</h6>
                     <p>
                       Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
                     </p>
-                    <a href="#">Learn more</a>
                   </div>
                 </div>
+				</a>
               </div>
               <div class="span3">
+			   <a href="<?php echo get_site_url(); ?>/select-page">
                 <div class="box aligncenter">
                   <div class="aligncenter icon">
                     <i class="icon-desktop icon-circled icon-64 active"></i>
                   </div>
                   <div class="text">
-                    <h6>Responsive theme</h6>
+                    <h6>Go to Menu</h6>
                     <p>
                       Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
                     </p>
-                    <a href="#">Learn more</a>
                   </div>
                 </div>
+				</a>
               </div>
               <div class="span3">
+			   <a href="<?php echo get_site_url(); ?>/select-page">
                 <div class="box aligncenter">
                   <div class="aligncenter icon">
                     <i class="icon-beaker icon-circled icon-64 active"></i>
                   </div>
                   <div class="text">
-                    <h6>Coded carefully</h6>
+                    <h6>Go to Menu</h6>
                     <p>
                       Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
                     </p>
-                    <a href="#">Learn more</a>
                   </div>
                 </div>
+				</a>
               </div>
               <div class="span3">
+			   <a href="<?php echo get_site_url(); ?>/select-page">
                 <div class="box aligncenter">
                   <div class="aligncenter icon">
                     <i class="icon-coffee icon-circled icon-64 active"></i>
                   </div>
                   <div class="text">
-                    <h6>Sit and enjoy</h6>
+                    <h6>Go to Menu</h6>
                     <p>
                       Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
                     </p>
-                    <a href="#">Learn more</a>
                   </div>
                 </div>
+				</a>
+              </div>			  	
+                <div class="box aligncenter">
+             
               </div>
             </div>
           </div>
@@ -134,7 +141,7 @@
         <!-- Portfolio Projects -->
         <div class="row">
           <div class="span12">
-            <h4 class="heading">Some of recent <strong>works</strong></h4>
+            <h4 class="heading"><strong>Listing</strong></h4>
             <div class="row">
               <section id="projects">
                 <ul id="thumbs" class="portfolio">
@@ -242,7 +249,7 @@
         <!-- end divider -->
         <div class="row">
           <div class="span12">
-            <h4>Very satisfied <strong>clients</strong></h4>
+            <h4><strong>Menu</strong></h4>
             <ul id="mycarousel" class="jcarousel-skin-tango recent-jcarousel clients">
               <li>
                 <a href="#">

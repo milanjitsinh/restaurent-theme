@@ -122,7 +122,7 @@ $categoriesList = get_categories(array(
                 </div>
             <?php } ?>
             <div class="span12 text-center">
-            <input type="button" id="submitForm" name="submit" placeholder="Search Food Item" value="Search" />            
+            <input type="button" class="btn btn-large btn-theme margintop10" id="submitForm" name="submit" placeholder="Search Food Item" value="submit" />            
             </div>
 
         </form>
@@ -140,83 +140,43 @@ get_footer();
     var menu_list;
     var page_state = false;
 
-    // $(function(){
-
-    // $('select[name="location"]').change(function(){
-    // if($(this).val() == 'Outside Mumbai')
-    // $('.nop').find('input').attr('data-minval', '1000').end().find('span.minpax').html('1000');
-    // else
-    // $('.nop').find('input').attr('data-minval', '300').end().find('span.minpax').html('300');
-    // });
-
-    // });
-
-    // function submit_step(id)
+    // function post_ajax()
     // {
-    //     if (!validate(id))
-    //         return false;
+    //     pre_validate();
+    //     btn_label();
 
-    //     contact_dtls = $("#" + id).serialize();
-    //     var planner_type = $('select[name="food_type"]').val();
-    //     //alert(planner_type);
+    //     window.onbeforeunload = function () {
+    //         if (page_state == false)
+    //             return 'All the entered data will be lost!!!';
+    //     };
 
-    //     $.post('plan-menu-2-ax.php',
-    //             {
-    //                 planner_type: planner_type,
-    //                 ax: '1'
-    //             }).done(function (data) {
-    //         if (data != "ERROR!")
-    //         {
-    //             $('.menu-block').replaceWith(data);
-    //             post_ajax();
-    //         } else
-    //             alert("Error!");
-    //     }).fail(function () {
-    //         alert("Error!");
+    //     $('.listing ul li').click(function (e) {
+    //         if (e.target == this) {
+    //             if ($(this).find('input[type="checkbox"]:checked').length > 0)
+    //                 $(this).find('input[type="checkbox"]').attr("checked", false);
+    //             else
+    //                 $(this).find('input[type="checkbox"]').attr("checked", true);
+    //         }
     //     });
 
-    //     return false;
+    //     // Accordian Script
+    //     $('.block-head').click(function () {
+    //         if ($(this).hasClass('active'))
+    //             $(this).removeClass('active').next('.listing').slideToggle();
+    //         else
+    //         {
+    //             $('.block-head').not($(this)).removeClass('active').next('.listing').slideUp();
+    //             $(this).addClass('active').next('.listing').slideToggle(function () {
+    //                 $('html, body').animate({
+    //                     scrollTop: $(this).prev(".block-head").offset().top - ($('.header-1').outerHeight() + 14)
+    //                 });
+    //             });
+    //         }
+    //     });
+
+    //     // Load Lightbox
+    //     baguetteBox.run('.menu-listing .block');
+
     // }
-
-    function post_ajax()
-    {
-        pre_validate();
-        btn_label();
-
-        window.onbeforeunload = function () {
-            if (page_state == false)
-                return 'All the entered data will be lost!!!';
-        };
-
-        $('.listing ul li').click(function (e) {
-            if (e.target == this) {
-                if ($(this).find('input[type="checkbox"]:checked').length > 0)
-                    $(this).find('input[type="checkbox"]').attr("checked", false);
-                else
-                    $(this).find('input[type="checkbox"]').attr("checked", true);
-            }
-        });
-
-        // Accordian Script
-        $('.block-head').click(function () {
-            if ($(this).hasClass('active'))
-                $(this).removeClass('active').next('.listing').slideToggle();
-            else
-            {
-                $('.block-head').not($(this)).removeClass('active').next('.listing').slideUp();
-                $(this).addClass('active').next('.listing').slideToggle(function () {
-                    $('html, body').animate({
-                        scrollTop: $(this).prev(".block-head").offset().top - ($('.header-1').outerHeight() + 14)
-                    });
-                });
-            }
-        });
-
-        // Load Lightbox
-        baguetteBox.run('.menu-listing .block');
-
-    }
-
-
 
 </script>

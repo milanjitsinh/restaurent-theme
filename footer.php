@@ -11,8 +11,8 @@
 
 ?>
 
-    <footer>
-      <div class="container">
+    <footer >
+      <div class="container hidden">
         <div class="row">
           <div class="span3">
             <div class="widget">
@@ -70,9 +70,9 @@
             <div class="span6">
               <div class="copyright">
                 <p>
-                  <span>&copy; Flattern - All right reserved.</span>
+                  <span>&copy; - All right reserved.</span>
                 </p>
-                <div class="credits">
+                <div class="credits hidden">
                   <!--
                     All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.

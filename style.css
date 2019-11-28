@@ -124,3 +124,10 @@ a, a:hover, a:focus, a:active{
 .fancybox-title-inside-wrap {
     padding: 10px 30px 10px !important;
 }
+.menuImag img{
+	height:150px !important;
+	width:150px !important;
+}
+body{
+	overflow-x:hidden;
+}

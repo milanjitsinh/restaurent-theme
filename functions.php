@@ -127,16 +127,9 @@ function restaurant_scripts() {
 	wp_enqueue_style( 'fancybox', get_template_directory_uri()."/css/fancybox/jquery.fancybox.css" , array(), '20151215', false );
 	wp_enqueue_style( 'jcarousel.css', get_template_directory_uri()."/css/jcarousel.css" , array(), '20151215', false );
 	wp_enqueue_style( 'flexslider.css', get_template_directory_uri()."/css/flexslider.css" , array(), '20151215', false );
-	
 	/* Theme skin */
 	wp_enqueue_style( 'green.css', get_template_directory_uri()."/skins/green.css" , array(), '20151215', false );
-	
-	
 	wp_enqueue_style( 'style.css', get_template_directory_uri()."/css/style.css" , array(), '20151215', false );
-
-
-
-
 	/* Js*/
 	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery.js', array(), '20151215',true );
 	wp_enqueue_script( 'jquery.easing', get_template_directory_uri() . '/js/jquery.easing.1.3.js', array(), '20151215', true );
@@ -148,7 +141,7 @@ function restaurant_scripts() {
 
 //	wp_enqueue_script( 'jquery.quicksand.js', get_template_directory_uri() . '/js/portfolio/jquery.quicksand.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'setting.js', get_template_directory_uri() . '/js/portfolio/setting.js', array(), '20151215', true );
+	wp_enqueue_script( 'setting.js', get_template_directory_uri() . '/js/portfolio/setting.js', array(), '20151215'	, true );
 	wp_enqueue_script( 'jquery.flexslider.js', get_template_directory_uri() . '/js/jquery.flexslider.js', array(), '20151215', true );
 	wp_enqueue_script( 'jquery.nivo.slider.js', get_template_directory_uri() . '/js/jquery.nivo.slider.js', array(), '20151215', true );
 	wp_enqueue_script( 'modernizr.custom.js', get_template_directory_uri() . '/js/modernizr.custom.js', array(), '20151215', true );
@@ -194,7 +187,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	
 
 function submit_item_ajax_request() {
- 
+ 	global $wpdb;
     // The $_REQUEST contains all the data sent via ajax
     if ( isset($_REQUEST) ) {
 
@@ -205,12 +198,25 @@ function submit_item_ajax_request() {
 		parse_str($_POST['itemsId'], $values);
 		parse_str($_POST['formData'], $formArray);
         // Let's take the data that was sent and do something with it
-    	print_r($values['items']);
-    	print_r($formArray);
-        // print_r($_REQUEST);
+    	// print_r($values['items']);
+    	$serializeItemIds= serialize($values['items']);
+        $inputArg = array('name' =>$formArray['name'] , 
+        				  'email' => $formArray['email'],
+        				  'number' => $formArray['contactNo'],
+        				  'location' => $formArray['location'],
+        				  'venue' => $formArray['venue'],
+        				  'event_type' => $formArray['event'],
+        				  'no_of_people' => $formArray['noofpeople'],
+        				  'date' => $formArray['doe'],
+        				  'item_ids'=>$serializeItemIds
+        				  );
+		$tbl= $wpdb->prefix ."inquery_entry";
+		$insertId = $wpdb->insert($tbl, $inputArg);
+        // print_r($wpdb);
+        wp_send_json($insertId);
     }     
     // Always die in functions echoing ajax content
-   die();
+   // die();
 }
  
 add_action( 'wp_ajax_submit_item_ajax_request', 'submit_item_ajax_request' );

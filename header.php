@@ -48,7 +48,7 @@
     <div class="hidden-top">
       <div class="hidden-top-inner container">
         <div class="row">
-          <div class="span12">
+          <div class="span8">
             <ul>
               <li><strong>We are available for any custom works this month</strong></li>
               <li>Main office: Springville center X264, Park Ave S.01</li>
@@ -63,8 +63,8 @@
     <header>
       <div class="container ">
         <!-- hidden top area toggle link -->
-        <div id="header-hidden-link">
-          <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
+        <div id="header-hidden-link hidden">
+          <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i></a>
         </div>
         <!-- end toggle link -->
         <div class="row nomargin">
@@ -176,8 +176,8 @@
         <div class="row">
           <div class="span4">
             <div class="logo">
-              <a href="index.html"><img src="<?php echo get_template_directory_uri().'/' ?>img/logo.png" alt="" class="logo" /></a>
-              <h1>Text</h1>
+              <a href="<?php echo get_site_url(); ?>"><img src="<?php echo get_template_directory_uri().'/' ?>img/logo.png" alt="" class="logo" /></a>
+              <h1></h1>
             </div>
           </div>
           <div class="span8">
@@ -185,58 +185,27 @@
               <div class="navigation">
                 <nav>
                   <ul class="nav topnav">
-                    <li class="dropdown active">
-                      <a href="#">Home <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Homepage 2</a></li>
-                        <li><a href="#">Homepage 3</a></li>
-                      </ul>
+                    <li class="dropdown ">
+                      <a href="#">Home</i></a>
                     </li>
                     <li class="dropdown">
-                      <a href="#">Features <i class="icon-angle-down"></i></a>
+                      <a href="#">Features</i></a>
                       <ul class="dropdown-menu">
-                        <li><a href="#">Typography</a></li>
-                        <li><a href="#">Table</a></li>
+                    
                         <li><a href="#">Components</a></li>
-                        <li><a href="#">56 Animations</a></li>
-                        <li><a href="#">Icons</a></li>
-                        <li><a href="#">Icon variations</a></li>
-                        <li class="dropdown"><a href="#">3 Sliders <i class="icon-angle-right"></i></a>
+                        <!--<li class="dropdown"><a href="#">3 Sliders <i class="icon-angle-right"></i></a>
                           <ul class="dropdown-menu sub-menu-level1">
                             <li><a href="index.html">Nivo slider</a></li>
                             <li><a href="index-alt2.html">Slit slider</a></li>
                             <li><a href="index-alt3.html">Parallax slider</a></li>
-                          </ul>
-                        </li>
+                          </ul> 
+                        </li>--->
                       </ul>
                     </li>
-                    <li class="dropdown">
-                      <a href="#">Pages <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Pricing boxes</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">404</a></li>
-                      </ul>
+                    <li >
+                      <a href="#">Pages </i></a>
                     </li>
-                    <li class="dropdown">
-                      <a href="#">Portfolio <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Portfolio 2 columns</a></li>
-                        <li><a href="#">Portfolio 3 columns</a></li>
-                        <li><a href="#">Portfolio 4 columns</a></li>
-                        <li><a href="#">Portfolio detail</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#">Blog <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Blog left sidebar</a></li>
-                        <li><a href="#">Blog right sidebar</a></li>
-                        <li><a href="#">Post left sidebar</a></li>
-                        <li><a href="#">Post right sidebar</a></li>
-                      </ul>
-                    </li>
+
                     <li>
                       <a href="#">Contact </a>
                     </li>

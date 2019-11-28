@@ -33,9 +33,9 @@ Use our Menu Planner to plan it for your special occasion and send it to us in n
             <div class="row">
               <div class="span4">
                 <div class="box aligncenter">
-				<a href="#">
-                  <div class="aligncenter icon">
-					<img src="http://fusionfoodindia.in/images/menu-list.jpg">
+				<a href="<?php echo get_site_url(); ?>/plan-menu">
+                  <div class="aligncenter icon menuImag">
+					<img src="<?php echo get_template_directory_uri() . '/' ?>img/menu.png">
                   </div>
 				  </a>
                   <div class="text">
@@ -45,11 +45,10 @@ Use our Menu Planner to plan it for your special occasion and send it to us in n
               </div>
               <div class="span4">
                 <div class="box aligncenter">
-				<a href="#">
-                  <div class="aligncenter icon">
-					<img src="http://fusionfoodindia.in/images/menu-list.jpg">
-                  </div>
-				  </a>
+				<a href="<?php echo get_site_url(); ?>/plan-menu">
+                  <div class="aligncenter icon menuImag">
+					<img src="<?php echo get_template_directory_uri() . '/' ?>img/menu.png">
+                  </div>				  </a>
                   <div class="text">
                     <h5>Menu Planner</h5>
                   </div>

@@ -222,40 +222,40 @@ jQuery(document).ready(function($) {
 
   Page.init();
 
-});
+
 
 jQuery('#submitForm').on('click',function(){
      
 // debugger;
-// if (jQuery('input[type="checkbox"]:checked').length < 10)
-//        {
-//            alert("Kindly select minimum of 10 items to plan your menu!");
-//            return false;
-//        }
+if (jQuery('input[type="checkbox"]:checked').length < 10)
+       {
+           alert("Kindly select minimum of 10 items to plan your menu!");
+           return false;
+       }
 
         page_state = true;
-
         menu_list = jQuery("#mark_delicacies").serialize();
         console.log(menu_list);
-  jQuery.ajax({
-        url: ajaxurl, // or example_ajax_obj.ajaxurl if using on frontend
-        data: {
-            'action': 'submit_item_ajax_request',
-            'itemsId' : menu_list,
-            'formData': window.step1_data,
-        },
-        method:'POST',
-        success:function(data) {
-            // This outputs the result of the ajax request
-            console.log(data);
-        },
-        error: function(errorThrown){
-            console.log(errorThrown);
-        }
-    });  
+            var userInfo = jQuery("#step2").attr('step1_data');
+    jQuery.ajax({
+          url: ajaxurl, // or example_ajax_obj.ajaxurl if using on frontend
+          data: {
+              'action': 'submit_item_ajax_request',
+              'itemsId' : menu_list,
+              'formData': userInfo,
+          },
+          method:'POST',
+          success:function(data) {
+              // This outputs the result of the ajax request
+              console.log(data);
+          },
+          error: function(errorThrown){
+              console.log(errorThrown);
+          }
+      });  
 
  });
-jQuery(document).ready(function($) {
+
   "use strict";
 
   //Contact
@@ -323,9 +323,11 @@ jQuery(document).ready(function($) {
     if (ferror) return false;
    
     var step1_data = jQuery(this).serialize();
+     jQuery("#step2").attr('step1_data',step1_data);
+    console.log(step1_data);
       jQuery("#step2").show(1000);
       jQuery("#step1").hide(1000);
-    return true;
+    //return true;
     // var action = $(this).attr('action');
     // if( ! action ) {
     //   action = 'contactform/contactform.php';
